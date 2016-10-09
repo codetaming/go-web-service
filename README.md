@@ -2,6 +2,8 @@
 
 A very simple Go Web Service.
 
+A video of the process of creating the service and Docker image can be seen on [YouTube](https://youtu.be/-IoWzON4IRA)
+
 ## Run
 ```
 go run main.go
