@@ -2,6 +2,11 @@
 
 A very simple Go Web Service.
 
+## Run
+```
+go run main.go
+```
+
 ## Build
 ```
 go build
