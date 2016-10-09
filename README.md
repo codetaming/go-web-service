@@ -30,6 +30,4 @@ docker push codetaming/go-web-service
 ```
 
 ## Test in Browser
-```
-[http://localhost:8080/Code%20Taming](http://localhost:8080/Code%20Taming){:target="_blank"}.
-```
+[http://localhost:8080/Code%20Taming](http://localhost:8080/Code%20Taming)
