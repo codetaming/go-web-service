@@ -1,0 +1,17 @@
+apiVersion:       extensions/v1beta1
+kind:             Deployment
+metadata:
+  name:           go-web-service-dep
+spec:
+  replicas:       3
+  template:
+    metadata:
+      labels:
+        app:      go-web-service
+        env:      development
+    spec:
+      containers:
+      - name:      go-web-service
+        image:     codetaming/go-web-service-arm
+        ports:
+        - containerPort: 9876

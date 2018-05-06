@@ -1,2 +1,2 @@
-FROM golang:onbuild
+FROM resin/raspberry-pi-golang
 EXPOSE 8080

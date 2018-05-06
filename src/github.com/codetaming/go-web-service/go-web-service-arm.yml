@@ -1,0 +1,8 @@
+apiVersion:    v1
+kind:          Pod
+metadata:
+  name:        go-web-service
+spec:
+  containers:
+  - name:      go-web-service
+    image:     codetaming/go-web-service-arm

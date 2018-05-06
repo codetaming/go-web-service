@@ -22,18 +22,18 @@ go build
 ## Build Docker
 
 ```
-docker build -t codetaming/go-web-service .
+docker build -t codetaming/go-web-service-arm .
 ```
 
 ## Run Docker
 ```
-docker run --publish 8080:8080 -t codetaming/go-web-service
+docker run --publish 8080:8080 -t codetaming/go-web-service-arm
 ```
 
 ## Push to Docker Hub
 ```
 docker login
-docker push codetaming/go-web-service
+docker push codetaming/go-web-service-arm
 ```
 
 ## Test in Browser
