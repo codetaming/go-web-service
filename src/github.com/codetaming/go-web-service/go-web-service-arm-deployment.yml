@@ -43,6 +43,13 @@ spec:
         backend:
           serviceName: go-web-service-svc
           servicePort: 80
+  - host: k8s.codetaming.org
+    http:
+      paths:
+      - path: /go
+        backend:
+          serviceName: go-web-service-svc
+          servicePort: 80
 ---
 apiVersion: v1
 kind: ServiceAccount
