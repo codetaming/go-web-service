@@ -1,7 +1,7 @@
 apiVersion:       extensions/v1beta1
 kind:             Deployment
 metadata:
-  name:           go-web-service-dep
+  name:           go-web-service
 spec:
   replicas:       3
   template:
@@ -14,4 +14,82 @@ spec:
       - name:      go-web-service
         image:     codetaming/go-web-service-arm
         ports:
-        - containerPort: 9876
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-web-service-svc
+spec:
+  ports:
+     -  port: 8080
+        protocol: TCP
+        targetPort: 8080
+  selector:
+    app: go-web-service
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: go-web-service-ingress
+spec:
+  rules:
+  - host: go.k8s.codetaming.org
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: go-web-service-svc
+          servicePort: 80
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: traefik-ingress-controller
+  namespace: kube-system
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: traefik-ingress-controller
+  namespace: kube-system
+  labels:
+    k8s-app: traefik-ingress-lb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: traefik-ingress-lb
+  template:
+    metadata:
+      labels:
+        k8s-app: traefik-ingress-lb
+        name: traefik-ingress-lb
+    spec:
+      serviceAccountName: traefik-ingress-controller
+      terminationGracePeriodSeconds: 60
+      containers:
+      - image: traefik
+        name: traefik-ingress-lb
+        args:
+        - --api
+        - --kubernetes
+        - --logLevel=INFO
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: traefik-ingress-service
+  namespace: kube-system
+spec:
+  selector:
+    k8s-app: traefik-ingress-lb
+  ports:
+    - protocol: TCP
+      port: 80
+      name: web
+    - protocol: TCP
+      port: 8080
+      name: admin
+  type: NodePort
