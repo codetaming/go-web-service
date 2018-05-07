@@ -38,10 +38,10 @@ spec:
   - host: k8s.codetaming.org
     http:
       paths:
-      - path: /
+      - path: /go
         backend:
           serviceName: go-web-service-svc
-          servicePort: 8080
+          servicePort: 80
 ---
 apiVersion: v1
 kind: ServiceAccount
