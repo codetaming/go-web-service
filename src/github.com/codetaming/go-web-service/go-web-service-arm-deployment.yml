@@ -93,6 +93,5 @@ spec:
     - protocol: TCP
       port: 8080
       name: admin
-  type: NodePort
   externalIPs:
     - 10.1.1.200
