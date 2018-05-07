@@ -21,13 +21,11 @@ kind: Service
 metadata:
   name: go-web-service-svc
 spec:
-  ports:
-  - name: http
-    targetPort: 8080
-    port: 80
   selector:
     app: go-web-service
-  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
