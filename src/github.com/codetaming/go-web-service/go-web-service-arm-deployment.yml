@@ -27,6 +27,7 @@ spec:
     port: 80
   selector:
     app: go-web-service
+  type: NodePort
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -93,5 +94,6 @@ spec:
     - protocol: TCP
       port: 8080
       name: admin
+  type: NodePort
   externalIPs:
     - 10.1.1.200
