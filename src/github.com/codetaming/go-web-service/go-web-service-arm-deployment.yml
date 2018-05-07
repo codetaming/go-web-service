@@ -36,10 +36,10 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-  - host: k8s.codetaming.org
+  - host: go.k8s.codetaming.org
     http:
       paths:
-      - path: /go
+      - path: /
         backend:
           serviceName: go-web-service-svc
           servicePort: 80
