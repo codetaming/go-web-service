@@ -27,12 +27,13 @@ spec:
         targetPort: 8080
   selector:
     app: go-web-service
-  type: NodePort
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: go-web-service-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
 spec:
   rules:
   - host: k8s.codetaming.org
@@ -41,7 +42,7 @@ spec:
       - path: /go
         backend:
           serviceName: go-web-service-svc
-          servicePort: 80
+          servicePort: http
 ---
 apiVersion: v1
 kind: ServiceAccount
