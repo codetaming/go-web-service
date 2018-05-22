@@ -9,4 +9,4 @@ WORKDIR /app
 COPY --from=build-env /app/goapp /app
 
 EXPOSE 8080
-ENTRYPOINT ./goapp
+ENTRYPOINT ./app
